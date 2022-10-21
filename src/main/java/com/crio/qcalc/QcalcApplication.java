@@ -22,6 +22,12 @@ public class QcalcApplication {
 		sci.square(10);
 		sci.printResult();
 
+		
+		LogicCalculator lgc = new LogicCalculator();
+		lgc.OR(8, 6);
+		lgc.printResult();
+
+
 
 		
 	}

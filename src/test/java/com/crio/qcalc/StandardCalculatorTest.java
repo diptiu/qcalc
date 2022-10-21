@@ -14,9 +14,32 @@ public class StandardCalculatorTest {
         standardCalculator = new StandardCalculator();
     }
 
+    @Test
+    @DisplayName("Test Multiplication Overflow of Two Doubles")// error
+    void testMultiplicationOverflowForDoubles(){
+        //Assert
+        Assertions.assertThrows(ArithmeticException.class,new Executable(){
+            @Override
+            public void execute() throws Throwable{
+                standardCalculator.multiply(Double.MAX_VALUE,Double.MAX_VALUE);
+            }
+        });
+    }
 
     @Test
-    @DisplayName("Test Addition Overflow of Two Doubles")//double add overflow
+    @DisplayName("Test Multiplication Overflow of Two Doubles in which One is Positive and Other is Negative")
+    void testMultiplicationOverflowForDoublesOnePosOtherNeg(){
+        //Assert
+        Assertions.assertThrows(ArithmeticException.class,new Executable(){
+            @Override
+            public void execute() throws Throwable{
+                standardCalculator.multiply(-Double.MAX_VALUE,Double.MAX_VALUE);
+            }
+        });
+    }
+
+    @Test
+    @DisplayName("Test Addition Overflow of Two Doubles")
     void testAdditionOverflowForDoubles(){
         //Assert
         Assertions.assertThrows(ArithmeticException.class,new Executable(){
@@ -26,9 +49,8 @@ public class StandardCalculatorTest {
             }
         });
     }
-
     @Test
-    @DisplayName("Test Subtraction Overflow of Two Doubles")//sub of 2 doubles overflow
+    @DisplayName("Test Subtraction Overflow of Two Doubles")
     void testSubtractionOverflowForDoubles(){
         //Assert
         Assertions.assertThrows(ArithmeticException.class,new Executable(){
@@ -40,7 +62,20 @@ public class StandardCalculatorTest {
     }
 
     @Test
-    @DisplayName("Test Addition of Two Doubles") // add normal doubles
+    @DisplayName("Test divide Overflow for divide by zero")
+    void testdivideOverflowForDoubles(){
+        //Assert
+        Assertions.assertThrows(ArithmeticException.class,new Executable(){
+            @Override
+            public void execute() throws Throwable{
+                standardCalculator.divide(Double.MAX_VALUE, 0.0);
+            }
+        });
+    }
+
+
+    @Test
+    @DisplayName("Test Addition of Two Doubles")
     void testAdditionOperationForDoubles(){
         standardCalculator.add(1.0,1.5);
         double actualResult = standardCalculator.getResult();
@@ -48,7 +83,7 @@ public class StandardCalculatorTest {
     }
 
     @Test
-    @DisplayName("Test Substraction of Two Doubles")// sub 2 normal doubles
+    @DisplayName("Test Substraction of Two Doubles")
     void testSubtractionOperationForDoubles(){
         standardCalculator.subtract(10.0,20.5);
         double actualResult = standardCalculator.getResult();
@@ -57,7 +92,7 @@ public class StandardCalculatorTest {
 
 
     @Test
-    @DisplayName("Test Addition of Two Integers")//add two int
+    @DisplayName("Test Addition of Two Integers")
     void testAdditionOperation(){
         standardCalculator.add(1,1);
         double actualResult = standardCalculator.getResult();
@@ -65,14 +100,13 @@ public class StandardCalculatorTest {
     }
 
     @Test
-    @DisplayName("Test Substraction of Two Integers")//sub two int
+    @DisplayName("Test Substraction of Two Integers")
     void testSubtractionOperation(){
         standardCalculator.subtract(1,1);
         double actualResult = standardCalculator.getResult();
         Assertions.assertEquals(0, actualResult);
     }
 
-    
 
 
 }
