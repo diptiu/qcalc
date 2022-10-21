@@ -12,11 +12,17 @@ public class QcalcApplication {
 
 
 		StandardCalculator calc = new StandardCalculator();
-		calc.add(Double.MAX_VALUE, Double.MAX_VALUE);
+		calc.add(2.5, 3.5);
 		calc.printResult();
 
 		// calc.add(1, 2);
 		// System.out.println(calc.getResult());
+
+		ScientificCalculator sci =new ScientificCalculator();
+		sci.square(10);
+		sci.printResult();
+
+
 		
 	}
 
